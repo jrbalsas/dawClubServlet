@@ -26,8 +26,9 @@ public class ClientesController extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        //clienteDAO=new ClienteDAOJDBC();
-        clienteDAO=new ClienteDAOList();
+        //Select DAO
+        clienteDAO=new ClienteDAOJDBC();
+        //clienteDAO=new ClienteDAOList();
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -159,6 +160,6 @@ public class ClientesController extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Customer Controller";
     }// </editor-fold>
 }

@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/dawclubServlet">
-  <Resource auth="Container" driverClassName="org.apache.derby.jdbc.ClientDriver" maxActive="8" name="jdbc/gestClub" password="dawuser1" type="javax.sql.DataSource" url="jdbc:derby://localhost:1527/club" username="dawuser1"/>
-  <Realm className="org.apache.catalina.realm.DataSourceRealm" dataSourceName="jdbc/gestClub" localDataSource="true" roleNameCol="rol" userCredCol="clave" userNameCol="usuario" userRoleTable="roles" userTable="usuarios"/>
+  <!--Apache Tomcat Derby Connection Pool-->
+  <!-- NOTE: Comment for glassfish deployment (see glassfish-resources.xml) -->
+    <Resource auth="Container" driverClassName="org.apache.derby.jdbc.ClientDriver" 
+        type="javax.sql.DataSource" 
+        url="jdbc:derby://localhost:1527/club" 
+        maxActive="8" 
+        name="jdbc/gestClub" 
+        username="dawuser1"
+        password="dawuser1" 
+    />
+  <!-- Tomcat Authentication Realm config -->
+  <!-- Select one of them -->
+
+  <!-- Tomcat File Realm -->
+
+  <!--
+    <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
+  -->
+  <!-- Tomcat JDBC Realm-->
+  <!--
+  <Realm className="org.apache.catalina.realm.DataSourceRealm" 
+        dataSourceName="jdbc/gestClub" localDataSource="true" 
+        roleNameCol="rol" 
+        userCredCol="clave" 
+        userNameCol="usuario" 
+        userRoleTable="roles" 
+        userTable="usuarios"/>
+   -->
 </Context>
