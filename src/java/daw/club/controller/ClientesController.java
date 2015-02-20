@@ -10,6 +10,7 @@ import daw.club.model.dao.ClienteDAOJDBC;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,81 +23,28 @@ public class ClientesController extends HttpServlet {
     /**View files path*/
     private final String srvViewPath="/WEB-INF/clientes";
     private ClienteDAO clienteDAO;
+    private String srvUrl;
+
     
     @Override
-    public void init() throws ServletException {
-        super.init();
+    public void init(ServletConfig servletConfig ) throws ServletException {
+        
+        super.init(servletConfig);
+        
+        //Servlet URL
+        srvUrl=servletConfig.getServletContext().getContextPath()+"/clientes";
+    
         //Select DAO
         clienteDAO=new ClienteDAOJDBC();
         //clienteDAO=new ClienteDAOList();
+
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
-        request.setCharacterEncoding("UTF-8");
-        response.setHeader("Expires","0"); //Avoid browser caching response
 
-        String action=(request.getPathInfo()!=null?request.getPathInfo():"");
-        String srvUrl=request.getContextPath()+request.getServletPath();
-        RequestDispatcher rd;
-
-        request.setAttribute("imgUrl",request.getContextPath()+"/images");
-        request.setAttribute("srvUrl", srvUrl);
-        if (action.equals("/visualiza")) {
-            //VISUALIZA UN CLIENTE
-            int id=Integer.parseInt(request.getParameter("id"));
-            Cliente c = clienteDAO.buscaId(id);
-            request.setAttribute("cliente", c);
-            rd=request.getRequestDispatcher(srvViewPath+"/visualiza.jsp");
-        } else if (action.equals("/borra")) {
-            //BORRAR CLIENTE
-            int id=Integer.parseInt(Util.getParam(request.getParameter("id"),"0"));
-            if (id>0) clienteDAO.borra(id);
-            response.sendRedirect(srvUrl);
-            return;
-        } else if (action.equals("/crea")) {
-            //ALTA DE UN CLIENTE
-            Cliente c=new Cliente();
-            if (request.getParameter("enviar")!=null) {
-                if (validarCliente(request,c)) {
-                    clienteDAO.crea(c); //Create new client
-                    //Post-sent-redirect
-                    response.sendRedirect(srvUrl+"/visualiza?id="+c.getId());
-                    return;
-                } 
-            }
-            //Formulario de alta    
-            request.setAttribute("cliente", c);
-            rd=request.getRequestDispatcher(srvViewPath+"/crea.jsp");
-        } else if (action.equals("/edita")) {
-            //EDICION DE UN CLIENTE
-            Cliente c;
-            if (request.getParameter("enviar")!=null) {
-                c=new Cliente();
-                if (validarCliente(request,c)) {
-                    //Guardar Cliente
-                    clienteDAO.guarda(c);
-                    response.sendRedirect(srvUrl);
-                    return;
-                }
-            } else {
-                //Cargar Cliente seleccionado
-                int id=Integer.parseInt(Util.getParam(request.getParameter("id"),"0"));
-                c=clienteDAO.buscaId(id);
-            }
-            //Formulario de edición
-            request.setAttribute("cliente", c);
-            rd=request.getRequestDispatcher(srvViewPath+"/edita.jsp");      
-        }else {
-            //LISTAR TODOS LOS CLIENTES
-            List<Cliente> lc = clienteDAO.buscaTodos();
-            request.setAttribute("clientes", lc);
-            rd=request.getRequestDispatcher(srvViewPath+"/listado_jstl.jsp");
-        }
-        rd.forward(request, response);
     }
-
+    
     /**Recopilar datos de un formulario de cliente y generar mensajes de error*/
     private boolean validarCliente(HttpServletRequest request, Cliente c) {
         boolean valido=true;
@@ -122,10 +70,10 @@ public class ClientesController extends HttpServlet {
         }
         return valido;
     }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
     /**
      * Handles the HTTP
-     * <code>GET</code> method.
+     * <code>GET</code> method. Select Controller Views
      *
      * @param request servlet request
      * @param response servlet response
@@ -135,12 +83,64 @@ public class ClientesController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         processRequest(request, response);
-    }
+     
+        response.setContentType("text/html");
+        request.setCharacterEncoding("UTF-8");
+        response.setHeader("Expires","0"); //Avoid browser caching response
 
+        String action=(request.getPathInfo()!=null?request.getPathInfo():"");
+
+        RequestDispatcher rd;
+
+        request.setAttribute("imgUrl",request.getContextPath()+"/images");
+        request.setAttribute("srvUrl", srvUrl);
+        
+        switch (action) {
+            case "/visualiza": {   //VISUALIZA UN CLIENTE
+                    int id=Integer.parseInt(request.getParameter("id"));
+                    Cliente c = clienteDAO.buscaId(id);
+                    request.setAttribute("cliente", c);
+                    rd=request.getRequestDispatcher(srvViewPath+"/visualiza.jsp");
+                    break;
+            }
+            case "/borra":  {   //BORRAR CLIENTE
+                int id=Integer.parseInt(Util.getParam(request.getParameter("id"),"0"));
+                if (id>0) clienteDAO.borra(id);
+                response.sendRedirect(srvUrl);
+                return;
+            }
+            case "/crea":  {    //FORMULARIO ALTA DE UN CLIENTE
+                Cliente c=new Cliente();
+                request.setAttribute("cliente", c);
+                rd=request.getRequestDispatcher(srvViewPath+"/crea.jsp");
+                break;
+            }
+            case "/edita": { //EDICION DE UN CLIENTE
+                    Cliente c;
+                    //Cargar Cliente seleccionado
+                    int id=Integer.parseInt(Util.getParam(request.getParameter("id"),"0"));
+                    c=clienteDAO.buscaId(id);
+                    //Formulario de edición
+                    request.setAttribute("cliente", c);
+                    rd=request.getRequestDispatcher(srvViewPath+"/edita.jsp");
+                    break;
+            }
+            default: {      //LISTAR TODOS LOS CLIENTES
+                List<Cliente> lc = clienteDAO.buscaTodos();
+                request.setAttribute("clientes", lc);
+                rd=request.getRequestDispatcher(srvViewPath+"/listado_jstl.jsp");
+                break;
+            }
+
+        }
+        rd.forward(request, response);
+    }
+    
     /**
      * Handles the HTTP
-     * <code>POST</code> method.
+     * <code>POST</code> method for Creating and Saving Customers
      *
      * @param request servlet request
      * @param response servlet response
@@ -150,7 +150,47 @@ public class ClientesController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         processRequest(request, response);
+
+        response.setContentType("text/html");
+        request.setCharacterEncoding("UTF-8");
+        response.setHeader("Expires","0"); //Avoid browser caching response
+
+        String action=(request.getPathInfo()!=null?request.getPathInfo():"");
+        String srvUrl=request.getContextPath()+request.getServletPath();
+
+        switch (action) {
+            case "/crea": {     //ALTA DE UN CLIENTE
+                Cliente c=new Cliente();
+                if (request.getParameter("enviar")!=null) {
+                    if (validarCliente(request,c)) {
+                        clienteDAO.crea(c); //Create new client
+                        //Post-sent-redirect
+                        response.sendRedirect(srvUrl+"/visualiza?id="+c.getId());
+                        return;
+                    } 
+                }      
+                break;
+            }
+            case "/edita": {    //EDICION DE UN CLIENTE
+                Cliente c;
+                if (request.getParameter("enviar")!=null) {
+                    c=new Cliente();
+                    if (validarCliente(request,c)) {
+                        //Guardar Cliente
+                        clienteDAO.guarda(c);
+                        response.sendRedirect(srvUrl);
+                        return;
+                    }
+                }
+                break;
+            }
+            default:{ // Default POST
+                break;
+            }
+        }
+        response.sendRedirect(srvUrl);        
     }
 
     /**
