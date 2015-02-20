@@ -8,7 +8,8 @@
         <title>Alta Cliente</title>
     </head>
     <body>
-        <h1>Alta Cliente</h1>
+        <%@include file="/WEB-INF/layout/header.jspf" %>
+        <h2>Alta Cliente</h2>
         <form method="POST">
         <label>Nombre: <input name="nombre" value="${cliente.nombre}"></label>${errNombre}<br/>
         <label>DNI:<input name="dni" value="${cliente.dni}"></label>${errDni}<br/>
@@ -17,5 +18,6 @@
         <input name="enviar" type="reset" value='Limpiar'>
         <a href="listado">Volver</a>
         </form>
+        <%@include file="/WEB-INF/layout/footer.jspf"%>
     </body>
 </html>

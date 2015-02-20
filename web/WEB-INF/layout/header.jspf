@@ -1,0 +1,5 @@
+<header>
+    <section>
+        <h1><img src="${pageContext.request.contextPath}/images/logo.png"> Tenis Club</h1>
+    </section>
+</header>

@@ -4,6 +4,7 @@ import daw.club.model.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 
+/*Sample DAO implementation using an ArrayList of Objects in memory*/
 public class ClienteDAOList implements ClienteDAO{
 
     private static ArrayList<Cliente> clientes=null;

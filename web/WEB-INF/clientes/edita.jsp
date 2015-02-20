@@ -7,7 +7,8 @@
         <title>Edita Cliente</title>
     </head>
     <body>
-        <h1>Editar Cliente</h1>
+        <%@include file="/WEB-INF/layout/header.jspf" %>
+        <h2>Editar Cliente</h2>
         <form method="POST">
         Cliente nº: ${cliente.id}<br>
         <input name="id" type="hidden" value="${cliente.id}">
@@ -18,5 +19,6 @@
         <input name="enviar" type="reset" value="Limpiar">
         <a href="listado">Volver</a>
         </form>
+        <%@include file="/WEB-INF/layout/footer.jspf"%>
     </body>
 </html>

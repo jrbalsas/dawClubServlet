@@ -6,7 +6,11 @@
         <title><fmt:message key="appName"/></title>
     </head>
     <body>
-        <h1>Gestión Clientes Servlet</h1>
-        <a href="clientes">Gestión clientes</a>
+        <%@include file="/WEB-INF/layout/header.jspf" %>
+        <h2>Opciones</h2>
+        <ul>
+            <li><a href="clientes">Gestión clientes</a></li>
+        </ul>
+        <%@include file="/WEB-INF/layout/footer.jspf"%>
     </body>
 </html>

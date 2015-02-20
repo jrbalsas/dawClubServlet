@@ -7,13 +7,14 @@
         <title>Listado de Clientes</title>
     </head> 
     <body>
-        <h1>Listado de Clientes (JSTL)</h1>
+        <%@include file="/WEB-INF/layout/header.jspf" %>
+        <h2>Listado de Clientes (JSTL)</h2>
         <c:if test="${empty clientes}">
             NO HAY CLIENTES DISPONIBLES
         </c:if>
         <c:if test="${not empty clientes}">
         <table>
-            <tr><th>ID</th><th>Nombre</th><th>DNI</th><th>Socio</th></tr>
+            <tr><th>ID</th><th>Nombre</th><th>DNI</th><th>Socio</th><th>Opciones</th></tr>
             <c:forEach var="c" items="${clientes}">
                 <c:set var="qry" value="?id=${c.id}"/>
                 <tr>
@@ -29,7 +30,6 @@
         </table>
         </c:if>
          <p><a href='${srvUrl}/crea'>Nuevo Cliente</a></p>
-         <c:import url="/WEB-INF/layout/footer.jsp"/>
          <%@include file="/WEB-INF/layout/footer.jspf"%>
     </body>
 </html>

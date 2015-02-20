@@ -7,4 +7,5 @@ Features:
 -------------
 - Simple DAOList for testing purpose
 - Sample DAOJDBC implementation
-- Sample Tomcat Connection Pool configuration file
+- Sample Tomcat DB Connection Pool configuration file
+- Sample Glassfish DB Connection Pool configuration file
