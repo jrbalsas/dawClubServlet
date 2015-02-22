@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="cliente" type="daw.club.model.Cliente" scope="request"/>
 <!DOCTYPE html>
 <html>
     <head>

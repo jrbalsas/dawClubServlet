@@ -24,6 +24,8 @@ public class ClientesController extends HttpServlet {
     private final String srvViewPath="/WEB-INF/clientes";
     private ClienteDAO clienteDAO;
     private String srvUrl;
+    private String imgUrl;
+    private String action;
 
     
     @Override
@@ -31,44 +33,30 @@ public class ClientesController extends HttpServlet {
         
         super.init(servletConfig);
         
-        //Servlet URL
+        //Servlet and image dir URLs for views' use
         srvUrl=servletConfig.getServletContext().getContextPath()+"/clientes";
-    
-        //Select DAO
-        clienteDAO=new ClienteDAOJDBC();
-        //clienteDAO=new ClienteDAOList();
+        imgUrl=servletConfig.getServletContext().getContextPath()+"/images";
+        
+        //Select DAO Implementation
+        //clienteDAO=new ClienteDAOJDBC();
+        clienteDAO=new ClienteDAOList();
 
     }
     
+/**Common Request processing*/
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    }
-    
-    /**Recopilar datos de un formulario de cliente y generar mensajes de error*/
-    private boolean validarCliente(HttpServletRequest request, Cliente c) {
-        boolean valido=true;
-        //Capturamos y convertimos datos
-        int id=Integer.parseInt(Util.getParam(request.getParameter("id"),"0"));
-        String nombre=Util.getParam(request.getParameter("nombre"),"");
-        String dni=Util.getParam(request.getParameter("dni"),"");
-        boolean socio=Util.getParamBool(request.getParameter("socio"));
-        //Asignamos datos al bean
-        c.setId(id);
-        c.setNombre(nombre);
-        c.setDni(dni);
-        c.setSocio(socio);
-        //Validamos Datos
-        if (nombre.length()<3 || nombre.length()>50) {
-            request.setAttribute("errNombre", "Nombre no válido");
-            //request.setAttribute("errNombre", "errNombre");
-            valido=false;
-        }
-        if (!dni.matches("^\\d{7,8}-?[a-zA-Z]{1}$")) {
-            request.setAttribute("errDni", "DNI no válido (12345678A)");
-            valido=false;
-        }
-        return valido;
+        response.setContentType("text/html");
+        request.setCharacterEncoding("UTF-8");
+        response.setHeader("Expires","0"); //Avoid browser caching response
+
+        request.setAttribute("imgUrl",imgUrl);
+        request.setAttribute("srvUrl", srvUrl);
+        
+        //Detect current servlet action
+        action=(request.getPathInfo()!=null?request.getPathInfo():"");
+        
     }
     
     /**
@@ -86,48 +74,39 @@ public class ClientesController extends HttpServlet {
         
         processRequest(request, response);
      
-        response.setContentType("text/html");
-        request.setCharacterEncoding("UTF-8");
-        response.setHeader("Expires","0"); //Avoid browser caching response
-
-        String action=(request.getPathInfo()!=null?request.getPathInfo():"");
-
         RequestDispatcher rd;
-
-        request.setAttribute("imgUrl",request.getContextPath()+"/images");
-        request.setAttribute("srvUrl", srvUrl);
         
         switch (action) {
-            case "/visualiza": {   //VISUALIZA UN CLIENTE
-                    int id=Integer.parseInt(request.getParameter("id"));
-                    Cliente c = clienteDAO.buscaId(id);
-                    request.setAttribute("cliente", c);
-                    rd=request.getRequestDispatcher(srvViewPath+"/visualiza.jsp");
-                    break;
+            case "/visualiza": {    //VISUALIZA UN CLIENTE
+                int id=Integer.parseInt(request.getParameter("id"));
+                Cliente c = clienteDAO.buscaId(id);
+                request.setAttribute("cliente", c);
+                rd=request.getRequestDispatcher(srvViewPath+"/visualiza.jsp");
+                break;
             }
-            case "/borra":  {   //BORRAR CLIENTE
+            case "/borra":  {       //BORRAR CLIENTE
                 int id=Integer.parseInt(Util.getParam(request.getParameter("id"),"0"));
                 if (id>0) clienteDAO.borra(id);
                 response.sendRedirect(srvUrl);
                 return;
             }
-            case "/crea":  {    //FORMULARIO ALTA DE UN CLIENTE
+            case "/crea":  {        //FORMULARIO ALTA DE  CLIENTE
                 Cliente c=new Cliente();
                 request.setAttribute("cliente", c);
                 rd=request.getRequestDispatcher(srvViewPath+"/crea.jsp");
                 break;
             }
-            case "/edita": { //EDICION DE UN CLIENTE
-                    Cliente c;
-                    //Cargar Cliente seleccionado
-                    int id=Integer.parseInt(Util.getParam(request.getParameter("id"),"0"));
-                    c=clienteDAO.buscaId(id);
-                    //Formulario de edición
-                    request.setAttribute("cliente", c);
-                    rd=request.getRequestDispatcher(srvViewPath+"/edita.jsp");
-                    break;
+            case "/edita": {        //FORMULARIO EDICION DE CLIENTE
+                Cliente c;
+                //Cargar Cliente seleccionado
+                int id=Integer.parseInt(Util.getParam(request.getParameter("id"),"0"));
+                c=clienteDAO.buscaId(id);
+                //Formulario de edición
+                request.setAttribute("cliente", c);
+                rd=request.getRequestDispatcher(srvViewPath+"/edita.jsp");
+                break;
             }
-            default: {      //LISTAR TODOS LOS CLIENTES
+            default: {          //LISTAR TODOS LOS CLIENTES
                 List<Cliente> lc = clienteDAO.buscaTodos();
                 request.setAttribute("clientes", lc);
                 rd=request.getRequestDispatcher(srvViewPath+"/listado_jstl.jsp");
@@ -153,53 +132,74 @@ public class ClientesController extends HttpServlet {
 
         processRequest(request, response);
 
-        response.setContentType("text/html");
-        request.setCharacterEncoding("UTF-8");
-        response.setHeader("Expires","0"); //Avoid browser caching response
-
-        String action=(request.getPathInfo()!=null?request.getPathInfo():"");
-        String srvUrl=request.getContextPath()+request.getServletPath();
-
         switch (action) {
             case "/crea": {     //ALTA DE UN CLIENTE
                 Cliente c=new Cliente();
-                if (request.getParameter("enviar")!=null) {
-                    if (validarCliente(request,c)) {
-                        clienteDAO.crea(c); //Create new client
-                        //Post-sent-redirect
-                        response.sendRedirect(srvUrl+"/visualiza?id="+c.getId());
-                        return;
-                    } 
-                }      
+                if (validarCliente(request,c)) {
+                    clienteDAO.crea(c); //Create new client
+                    //Post-sent-redirect
+                    response.sendRedirect(srvUrl+"/visualiza?id="+c.getId());
+                } else { //Show form with validation errores
+                    request.setAttribute("cliente", c);
+                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath+"/crea.jsp");
+                    rd.forward(request, response);
+                }
                 break;
             }
-            case "/edita": {    //EDICION DE UN CLIENTE
-                Cliente c;
-                if (request.getParameter("enviar")!=null) {
-                    c=new Cliente();
-                    if (validarCliente(request,c)) {
-                        //Guardar Cliente
-                        clienteDAO.guarda(c);
-                        response.sendRedirect(srvUrl);
-                        return;
-                    }
+            case "/edita": {    //ACTUALIZAR UN CLIENTE
+                Cliente c=new Cliente();
+                if (validarCliente(request,c)) {
+                    //Aactualizar datos Cliente
+                    clienteDAO.guarda(c);
+                    response.sendRedirect(srvUrl);
+                } else { //Show form with validation errores
+                    request.setAttribute("cliente", c);
+                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath+"/edita.jsp");
+                    rd.forward(request, response);
                 }
                 break;
             }
             default:{ // Default POST
+                response.sendRedirect(srvUrl);        
                 break;
             }
         }
-        response.sendRedirect(srvUrl);        
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+
+/**Recopilar datos de un formulario de cliente y generar mensajes de error en contexto de petición*/
+    private boolean validarCliente(HttpServletRequest request, Cliente c) {
+        boolean valido=true;
+        //Capturamos y convertimos datos
+        int id=Integer.parseInt(Util.getParam(request.getParameter("id"),"0"));
+        String nombre=Util.getParam(request.getParameter("nombre"),"");
+        String dni=Util.getParam(request.getParameter("dni"),"");
+        boolean socio=Util.getParamBool(request.getParameter("socio"));
+        //Asignamos datos al bean
+        c.setId(id);
+        c.setNombre(nombre);
+        c.setDni(dni);
+        c.setSocio(socio);
+        //Validamos Datos
+        if (nombre.length()<3 || nombre.length()>50) {
+            request.setAttribute("errNombre", "Nombre no válido");
+            valido=false;
+        }
+        if (!dni.matches("^\\d{7,8}-?[a-zA-Z]{1}$")) {
+            request.setAttribute("errDni", "DNI no válido (12345678A)");
+            valido=false;
+        }
+        return valido;
+    }
+
+/**
+ * Returns a short description of the servlet.
+ *
+ * @return a String containing servlet description
+ */
     @Override
     public String getServletInfo() {
         return "Customer Controller";
     }// </editor-fold>
+
 }
