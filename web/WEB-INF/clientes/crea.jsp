@@ -5,6 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Alta Cliente</title>
+        <link rel="stylesheet"  type="text/css" href="<c:url value='/css/common.css'/>">        
     </head>
     <body>
         <%@include file="/WEB-INF/layout/header.jspf" %>
