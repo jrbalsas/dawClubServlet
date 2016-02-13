@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*Sample DAO implementation using an ArrayList of Objects in memory*/
-public class MedioPagoDAO implements ClienteDAO{
+public class MedioPagoDAO {
 
     private final  ArrayList<String> medios;
 

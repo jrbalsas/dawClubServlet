@@ -1,4 +1,4 @@
-package daw.club.model.dao;
+package com.daw.club.model.dao;
 
 import daw.club.model.Cliente;
 import daw.club.model.Cliente;

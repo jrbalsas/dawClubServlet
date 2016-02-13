@@ -1,4 +1,4 @@
-package daw.club;
+package com.daw.club;
 
 public class Util {
     

@@ -2,10 +2,10 @@ package com.daw.club.controller;
 
 import com.daw.club.model.dao.MedioPagoDAO;
 import daw.club.model.Cliente;
-import daw.club.Util;
-import daw.club.model.dao.ClienteDAO;
-import daw.club.model.dao.ClienteDAOList;
-import daw.club.model.dao.ClienteDAOJDBC;
+import com.daw.club.Util;
+import com.daw.club.model.dao.ClienteDAO;
+import com.daw.club.model.dao.ClienteDAOList;
+import com.daw.club.model.dao.ClienteDAOJDBC;
 
 
 import java.io.IOException;
