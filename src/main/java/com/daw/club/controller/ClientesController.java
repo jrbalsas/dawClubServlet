@@ -28,7 +28,7 @@ public class ClientesController extends HttpServlet {
     private String srvUrl;
     private String imgUrl;
     private String action;
-    private static final Logger Log= Logger.getLogger("ClientesController");
+    private static final Logger Log= Logger.getLogger(ClientesController.class.getName());
 
     
     @Override
