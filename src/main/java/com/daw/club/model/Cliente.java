@@ -15,11 +15,12 @@ public class Cliente {
         medioPago=0;
     }
     
-    public Cliente(int id, String nombre, String dni, boolean socio) {
+    public Cliente(int id, String nombre, String dni, boolean socio,int medioPago) {
         this.id=id;
         this.nombre=nombre;
         this.dni=dni;
         this.socio=socio;
+        this.medioPago=medioPago;
     }
 
     /**Copy constructor*/
@@ -28,6 +29,7 @@ public class Cliente {
         this.nombre=c.nombre;
         this.dni=c.dni;
         this.socio=c.socio;
+        this.medioPago=c.medioPago;
     }
     
     /**

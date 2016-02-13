@@ -190,11 +190,15 @@ public class ClientesController extends HttpServlet {
         String nombre=Util.getParam(request.getParameter("nombre"),"");
         String dni=Util.getParam(request.getParameter("dni"),"");
         boolean socio=Util.getParamBool(request.getParameter("socio"));
+        int medioPago=Integer.parseInt(
+                            Util.getParam(request.getParameter("medioPago"), "0")
+                          );
         //Asignamos datos al bean
         c.setId(id);
         c.setNombre(nombre);
         c.setDni(dni);
         c.setSocio(socio);
+        c.setMedioPago(medioPago);
         //Validamos Datos
         if (nombre.length()<3 || nombre.length()>50) {
             request.setAttribute("errNombre", "Nombre no válido");

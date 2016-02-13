@@ -14,6 +14,7 @@
         Nombre: ${cliente.nombre}<br>
         DNI:${cliente.dni}<br>
         Socio: ${cliente.socio?"Sí":"No"}<br>
+        Medio Pago: ${mediosPago.buscaId(cliente.medioPago)}<br>        
         <p><a href='${srvUrl}/edita?id=${cliente.id}'>Edita</a>&nbsp;
             <a href='${srvUrl}'>Volver</a></p>   
         <%@include file="/WEB-INF/layout/footer.jspf"%>

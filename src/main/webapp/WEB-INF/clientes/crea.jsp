@@ -14,6 +14,15 @@
         <label>Nombre: <input name="nombre" value="${cliente.nombre}"></label>${errNombre}<br/>
         <label>DNI:<input name="dni" value="${cliente.dni}"></label>${errDni}<br/>
         <label>Socio:<input name="socio" type="checkbox" value="1" ${cliente.socio?"checked":""}></label><br>
+        <label>Medio Pago:
+            <select name="medioPago" >
+                <c:forEach var="medio" items="${mediosPago.buscaTodos()}" varStatus="elemento">
+                    <option value="${elemento.index}"  ${elemento.index==cliente.medioPago?'selected':''} >
+                        ${medio}
+                    </option>
+                </c:forEach>    
+            </select>
+        </label><br>        
         <input name="enviar" type="submit" value='Enviar'>
         <input name="enviar" type="reset" value='Limpiar'>
         <a href="listado">Volver</a>
