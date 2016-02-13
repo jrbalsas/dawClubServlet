@@ -1,4 +1,4 @@
-package daw.club.controller;
+package com.daw.club.controller;
 
 import daw.club.model.Cliente;
 import daw.club.Util;
@@ -9,6 +9,8 @@ import daw.club.model.dao.ClienteDAOJDBC;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -26,12 +28,15 @@ public class ClientesController extends HttpServlet {
     private String srvUrl;
     private String imgUrl;
     private String action;
+    private static final Logger Log= Logger.getLogger("ClientesController");
 
     
     @Override
     public void init(ServletConfig servletConfig ) throws ServletException {
         
         super.init(servletConfig);
+        
+        Log.info("Inicializando ClientesController");
         
         //Servlet and image dir URLs for views' use
         srvUrl=servletConfig.getServletContext().getContextPath()+"/clientes";
@@ -75,6 +80,8 @@ public class ClientesController extends HttpServlet {
         processRequest(request, response);
      
         RequestDispatcher rd;
+        
+        Log.log(Level.INFO, "Petición GET {0}", action);        
         
         switch (action) {
             case "/visualiza": {    //VISUALIZA UN CLIENTE
@@ -132,6 +139,8 @@ public class ClientesController extends HttpServlet {
 
         processRequest(request, response);
 
+        Log.log(Level.INFO, "Petición POST {0}", action);        
+
         switch (action) {
             case "/crea": {     //ALTA DE UN CLIENTE
                 Cliente c=new Cliente();
@@ -183,10 +192,12 @@ public class ClientesController extends HttpServlet {
         //Validamos Datos
         if (nombre.length()<3 || nombre.length()>50) {
             request.setAttribute("errNombre", "Nombre no válido");
+            Log.log(Level.INFO, "Enviado Nombre de usuario no válido");        
             valido=false;
         }
         if (!dni.matches("^\\d{7,8}-?[a-zA-Z]{1}$")) {
             request.setAttribute("errDni", "DNI no válido (12345678A)");
+            Log.log(Level.INFO, "Enviado DNI incorrecto");        
             valido=false;
         }
         return valido;
