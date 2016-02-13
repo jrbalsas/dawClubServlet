@@ -1,12 +1,12 @@
 dawClub using Servlet/JSP
 ==========
 
-Sample Netbeans project with classic CRUD Web App using Servlet/JSP
+Sample Maven project with classic CRUD Web App using Servlet,JSP and JSTL
 
 Features:
 -------------
-- Simple DAOList for testing purpose
-- Sample DAOJDBC implementation
+- Simple DAO with Lists for testing purpose
+- Sample DAO JDBC implementation
 - Sample Tomcat DB Connection Pool configuration file
 - Sample Glassfish DB Connection Pool configuration file
 
@@ -16,7 +16,7 @@ Installation instructions
 Just run project in Netbeans using Tomcat Server
 
 ### JDBC DAO
-* Change ClientesController.java init method to create an instance of ClienteDAOJDBC class
-* Create Derby Database from Netbeans Services tab and launch WEB-INF DBInitScript.sql in order to generate test DB schema and sample data
-* Adapt META-INF/context.xml DB Connection Pool with database custom data for Tomcat deploy
-* Adapt glassfish-resources.xml DB Connection Pool with database custom data for Glassfish deploy
+* Change the ClientesController.java init method to create an instance of the ClienteDAOJDBC class
+* Create a Derby Database from Netbeans Services tab and launch WEB-INF DBInitScript.sql in order to generate test DB schema and sample data
+* Adapt META-INF/context.xml DB Connection Pool with database custom data if deployed in Tomcat
+* Adapt glassfish-resources.xml DB Connection Pool with database custom data if deployed in Glassfish
