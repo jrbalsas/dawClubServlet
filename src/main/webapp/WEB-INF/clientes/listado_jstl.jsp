@@ -15,13 +15,15 @@
         </c:if>
         <c:if test="${not empty clientes}">
         <table>
-            <tr><th>ID</th><th>Nombre</th><th>DNI</th><th>Socio</th><th>Opciones</th></tr>
+            <tr><th>ID</th><th>Nombre</th><th>DNI</th><th>Socio</th>
+                <th>Medio Pago</th><th>Opciones</th></tr>
             <c:forEach var="c" items="${clientes}">
                 <c:set var="qry" value="?id=${c.id}"/>
                 <tr>
                     <td>${c.id}</td>
                     <td>${c.nombre}</td><td>${c.dni}</td>
                     <td>${c.socio?"Sí":"No"}</td>
+                    <td>${mediosPago.buscaId(c.medioPago)}</td>
                     <td><a href='${srvUrl}/visualiza${qry}'>Ver</a>&nbsp;
                         <a href='${srvUrl}/edita${qry}'>Editar</a>&nbsp;
                         <a href='${srvUrl}/borra${qry}'>Borrar</a>&nbsp;

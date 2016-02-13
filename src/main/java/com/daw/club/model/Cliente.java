@@ -5,12 +5,14 @@ public class Cliente {
     private String nombre;
     private String dni;
     private boolean socio;
+    private int medioPago;
 
 
     public Cliente () {
         id=0;
         nombre="Desconocido";
         socio=false;
+        medioPago=0;
     }
     
     public Cliente(int id, String nombre, String dni, boolean socio) {
@@ -81,6 +83,14 @@ public class Cliente {
      */
     public void setSocio(boolean socio) {
         this.socio = socio;
+    }
+
+    public int getMedioPago() {
+        return medioPago;
+    }
+
+    public void setMedioPago(int medioPago) {
+        this.medioPago = medioPago;
     }
     
 }

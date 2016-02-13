@@ -1,5 +1,6 @@
 package com.daw.club.controller;
 
+import com.daw.club.model.dao.MedioPagoDAO;
 import daw.club.model.Cliente;
 import daw.club.Util;
 import daw.club.model.dao.ClienteDAO;
@@ -25,6 +26,7 @@ public class ClientesController extends HttpServlet {
     /**View files path*/
     private final String srvViewPath="/WEB-INF/clientes";
     private ClienteDAO clienteDAO;
+    private MedioPagoDAO mediosPago;
     private String srvUrl;
     private String imgUrl;
     private String action;
@@ -45,6 +47,8 @@ public class ClientesController extends HttpServlet {
         //Select DAO Implementation
         //clienteDAO=new ClienteDAOJDBC();
         clienteDAO=new ClienteDAOList();
+        
+        mediosPago=new MedioPagoDAO();
 
     }
     
@@ -81,7 +85,9 @@ public class ClientesController extends HttpServlet {
      
         RequestDispatcher rd;
         
-        Log.log(Level.INFO, "Petición GET {0}", action);        
+        Log.log(Level.INFO, "Petición GET {0}", action);
+        
+        request.setAttribute("mediosPago", mediosPago);
         
         switch (action) {
             case "/visualiza": {    //VISUALIZA UN CLIENTE
