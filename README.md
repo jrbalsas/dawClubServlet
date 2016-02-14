@@ -9,6 +9,7 @@ Features:
 - Sample DAO JDBC implementation
 - Sample Tomcat DB Connection Pool configuration file
 - Sample Glassfish DB Connection Pool configuration file
+- Boostrap styles
 
 Installation instructions
 ----------------
