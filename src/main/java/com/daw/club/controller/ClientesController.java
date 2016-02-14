@@ -66,6 +66,8 @@ public class ClientesController extends HttpServlet {
         //Detect current servlet action
         action=(request.getPathInfo()!=null?request.getPathInfo():"");
         
+        request.setAttribute("mediosPago", mediosPago.buscaTodos().toArray());
+        
     }
     
     /**
@@ -86,9 +88,7 @@ public class ClientesController extends HttpServlet {
         RequestDispatcher rd;
         
         Log.log(Level.INFO, "Petición GET {0}", action);
-        
-        request.setAttribute("mediosPago", mediosPago.buscaTodos().toArray());
-        
+                
         switch (action) {
             case "/visualiza": {    //VISUALIZA UN CLIENTE
                 int id=Integer.parseInt(request.getParameter("id"));

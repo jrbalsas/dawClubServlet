@@ -1,5 +1,7 @@
-<header>
-    <section>
-        <h1><img src="${pageContext.request.contextPath}/images/logo.png"> Tenis Club</h1>
-    </section>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<header class="page-header container">
+    <h1>
+        <a href="<c:url value='/'/>"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
+           Club de Tenis
+    </h1>
 </header>

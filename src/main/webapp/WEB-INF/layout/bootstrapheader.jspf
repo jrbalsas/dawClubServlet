@@ -1,0 +1,16 @@
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="bootstrapbase" value="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6"/>   
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="${bootstrapbase}/css/bootstrap.min.css" >
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="${bootstrapbase}/css/bootstrap-theme.min.css" >
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="${bootstrapbase}/js/bootstrap.min.js"> </script>

@@ -1,6 +1,8 @@
 <%-- any content can be specified here e.g.: --%>
 <%@page import="java.util.Date"%>
 <%@page pageEncoding="UTF-8" %>
-<footer>
+<footer class="panel panel-default well">
+    <div class="panel-body">
     <%= new Date() %>
+    <div>
 </footer>
