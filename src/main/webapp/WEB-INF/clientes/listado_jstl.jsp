@@ -23,7 +23,7 @@
                     <td>${c.id}</td>
                     <td>${c.nombre}</td><td>${c.dni}</td>
                     <td>${c.socio?"Sí":"No"}</td>
-                    <td>${mediosPago.buscaId(c.medioPago)}</td>
+                    <td>${mediosPago[c.medioPago]}</td>
                     <td><a href='${srvUrl}/visualiza${qry}'>Ver</a>&nbsp;
                         <a href='${srvUrl}/edita${qry}'>Editar</a>&nbsp;
                         <a href='${srvUrl}/borra${qry}'>Borrar</a>&nbsp;

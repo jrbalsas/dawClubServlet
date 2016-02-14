@@ -87,7 +87,7 @@ public class ClientesController extends HttpServlet {
         
         Log.log(Level.INFO, "Petición GET {0}", action);
         
-        request.setAttribute("mediosPago", mediosPago);
+        request.setAttribute("mediosPago", mediosPago.buscaTodos().toArray());
         
         switch (action) {
             case "/visualiza": {    //VISUALIZA UN CLIENTE
