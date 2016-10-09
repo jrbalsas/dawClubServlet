@@ -10,11 +10,12 @@ Features:
 - Sample Tomcat DB Connection Pool configuration file
 - Sample Glassfish DB Connection Pool configuration file
 - Boostrap styles
+- Runs from command line using Jetty
 
 Installation instructions
 ----------------
 ### In-Memory DAO
-Just run project in Netbeans using Tomcat Server
+Run project in Netbeans using Tomcat Server or just enter 'mvn jetty:run' in command line from project folder
 
 ### JDBC DAO
 * Change the ClientesController.java init method to create an instance of the ClienteDAOJDBC class
