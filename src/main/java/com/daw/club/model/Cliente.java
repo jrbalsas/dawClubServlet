@@ -1,4 +1,4 @@
-package daw.club.model;
+package com.daw.club.model;
 
 public class Cliente {
     private int id;

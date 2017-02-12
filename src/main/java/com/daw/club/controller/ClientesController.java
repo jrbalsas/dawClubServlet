@@ -1,7 +1,7 @@
 package com.daw.club.controller;
 
 import com.daw.club.model.dao.MedioPagoDAO;
-import daw.club.model.Cliente;
+import com.daw.club.model.Cliente;
 import com.daw.club.Util;
 import com.daw.club.model.dao.ClienteDAO;
 import com.daw.club.model.dao.ClienteDAOList;
@@ -29,7 +29,6 @@ public class ClientesController extends HttpServlet {
     private MedioPagoDAO mediosPago;
     private String srvUrl;
     private String imgUrl;
-    private String action;
     private static final Logger Log= Logger.getLogger(ClientesController.class.getName());
 
     
@@ -55,21 +54,18 @@ public class ClientesController extends HttpServlet {
 /**Common Request processing*/
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+			
         response.setContentType("text/html");
         request.setCharacterEncoding("UTF-8");
         response.setHeader("Expires","0"); //Avoid browser caching response
 
         request.setAttribute("imgUrl",imgUrl);
         request.setAttribute("srvUrl", srvUrl);
-        
-        //Detect current servlet action
-        action=(request.getPathInfo()!=null?request.getPathInfo():"");
-        
+                
         request.setAttribute("mediosPago", mediosPago.buscaTodos().toArray());
         
     }
-    
+
     /**
      * Handles the HTTP
      * <code>GET</code> method. Select Controller Views
@@ -86,6 +82,9 @@ public class ClientesController extends HttpServlet {
         processRequest(request, response);
      
         RequestDispatcher rd;
+
+        //Detect current servlet action
+        String action=(request.getPathInfo()!=null?request.getPathInfo():"");
         
         Log.log(Level.INFO, "Petición GET {0}", action);
                 
@@ -145,12 +144,15 @@ public class ClientesController extends HttpServlet {
 
         processRequest(request, response);
 
+        //Detect current servlet action
+        String action=(request.getPathInfo()!=null?request.getPathInfo():"");
+
         Log.log(Level.INFO, "Petición POST {0}", action);        
 
         switch (action) {
             case "/crea": {     //ALTA DE UN CLIENTE
                 Cliente c=new Cliente();
-                if (validarCliente(request,c)) {
+                if (validateCustomer(request,c)) {
                     clienteDAO.crea(c); //Create new client
                     //Post-sent-redirect
                     response.sendRedirect(srvUrl+"/visualiza?id="+c.getId());
@@ -163,7 +165,7 @@ public class ClientesController extends HttpServlet {
             }
             case "/edita": {    //ACTUALIZAR UN CLIENTE
                 Cliente c=new Cliente();
-                if (validarCliente(request,c)) {
+                if (validateCustomer(request,c)) {
                     //Aactualizar datos Cliente
                     clienteDAO.guarda(c);
                     response.sendRedirect(srvUrl);
@@ -183,7 +185,7 @@ public class ClientesController extends HttpServlet {
 
 
 /**Recopilar datos de un formulario de cliente y generar mensajes de error en contexto de petición*/
-    private boolean validarCliente(HttpServletRequest request, Cliente c) {
+    private boolean validateCustomer(HttpServletRequest request, Cliente c) {
         boolean valido=true;
         //Capturamos y convertimos datos
         int id=Integer.parseInt(Util.getParam(request.getParameter("id"),"0"));

@@ -1,8 +1,6 @@
 package com.daw.club.model.dao;
 
-import daw.club.model.Cliente;
-import daw.club.model.Cliente;
-import java.util.List;
+import com.daw.club.model.Cliente;
 
 public interface ClienteDAO extends GenericDAO<Cliente,Integer>{
     

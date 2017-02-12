@@ -1,6 +1,6 @@
 package com.daw.club.model.dao;
 
-import daw.club.model.Cliente;
+import com.daw.club.model.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 
