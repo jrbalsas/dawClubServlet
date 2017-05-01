@@ -6,9 +6,7 @@
   <!-- Tomcat Authentication Realm config -->
   <!-- Select one of them -->
   <!-- Tomcat File Realm -->
-  <!--
     <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
-  -->
   <!-- Tomcat JDBC Realm-->
   <!--
   <Realm className="org.apache.catalina.realm.DataSourceRealm" 

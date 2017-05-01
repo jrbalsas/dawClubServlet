@@ -7,13 +7,18 @@ Features:
 -------------
 - Simple DAO with Lists for testing purpose
 - Sample DAO JDBC implementation
-- Sample Tomcat DB Connection Pool configuration file
+- Sample Tomcat DB Connection Pool configuration in context.xml
+- Sample Tomcat file Realm  configuration in context.xml
 - Sample Glassfish DB Connection Pool configuration file
 - Boostrap styles
+- Optional access constraints for Authentication/Authorization.
+- Sevlet Logout controller and optional logout button for views
 - Runs from command line using Jetty
 
 Installation instructions
 ----------------
+- In Tomcat, for enabling Authentication form, uncomment <Auth-constraint> section in web.xml and add users on tomcat-users.xml
+
 ### In-Memory DAO
 Run project in Netbeans using Tomcat Server or just enter 'mvn jetty:run' in command line from project folder
 

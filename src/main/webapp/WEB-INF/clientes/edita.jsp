@@ -11,23 +11,24 @@
     <body class="container">
         <%@include file="/WEB-INF/layout/header.jspf" %>
         <main class="row">
-        <nav class="col-md-2">
+        <nav class="col-md-3">
             <h2>Opciones</h2>
             <ul class=" nav nav-pills nav-stacked">
-                <li ><a href="listado" class="btn btn-default">Volver</a></li>
+                <li><%@include file="/WEB-INF/layout/logoutBt.jspf" %></li>
+                <li ><a href="listado" class="active">Volver</a></li>
             </ul>
         </nav>
 
         <h2>Editar Cliente</h2>
-        <form method="POST" class="well  col-md-4">
+        <form method="POST" class="well  col-md-6">
         <h3>Cliente nº: ${cliente.id}</h3>
         <input name="id" type="hidden" value="${cliente.id}">
-        <label>Nombre: <input name="nombre" value="${cliente.nombre}" class="form-control"></label>
-            <span class='label label-warning'>${errNombre}</span><br/>
-        <label>DNI:<input name="dni" value="${cliente.dni}" class="form-control"></label>
-            <span class='label label-warning'>${errDni}</span><br/>
-        <label>Socio:<input name="socio" type="checkbox" value="1" ${cliente.socio?"checked":""} class="form-control"></label><br>
-        <label>Medio Pago:
+        <label>Nombre:</label> <input name="nombre" value="${cliente.nombre}" class="form-control">
+        <div><span class='form-text text-danger'>${errNombre}</span></div>
+        <label>DNI:</label><input name="dni" value="${cliente.dni}" class="form-control">
+        <div><span class='form-text text-danger'>${errDni}</span></div>
+        <label>Socio:</label><input name="socio" type="checkbox" value="1" ${cliente.socio?"checked":""} class="form-control">
+        <label>Medio Pago:</label>
             <select name="medioPago" class="form-control">
                 <c:forEach var="medio" items="${mediosPago}" varStatus="elemento">
                     <option value="${elemento.index}"  ${elemento.index==cliente.medioPago?'selected':''} >
@@ -35,7 +36,7 @@
                     </option>
                 </c:forEach>    
             </select>
-        </label>
+        
         <p>
             <input name="enviar" type="submit" value="Guardar" class="btn btn-primary">
             <input name="enviar" type="reset" value="Restaurar" class="btn btn-default">

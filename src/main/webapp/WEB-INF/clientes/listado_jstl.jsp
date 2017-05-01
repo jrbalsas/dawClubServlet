@@ -11,13 +11,14 @@
     <body class="container">
         <%@include file="/WEB-INF/layout/header.jspf" %>
         <main class="row">
-            <nav class="col-md-2">
+            <nav class="col-md-3">
                 <h2>Opciones</h2>
                 <ul class=" nav nav-pills nav-stacked">
+                <li><%@include file="/WEB-INF/layout/logoutBt.jspf" %></li>
                     <li class="active"><a href='${srvUrl}/crea'>Nuevo Cliente</a></li>
                 </ul>
             </nav>
-            <section class="col-md-10">
+            <section class="col-md-9">
             <h2>Listado de Clientes (JSTL)</h2>
         <c:if test="${empty clientes}">
             NO HAY CLIENTES DISPONIBLES
