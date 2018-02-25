@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,7 +33,7 @@
                                     <c:set var="qry" value="?id=${c.id}"/>
                             <tr>
                                 <td>${c.id}</td>
-                                <td>${c.nombre}</td><td>${c.dni}</td>
+                                <td>${fn:escapeXml(c.nombre)}</td><td>${c.dni}</td>
                                 <td>${c.socio?"Sí":"No"}</td>
                                 <td>${mediosPago[c.medioPago]}</td>
                                 <td><a class='btn btn-light' href='${srvUrl}/visualiza${qry}'>Ver</a>&nbsp;
