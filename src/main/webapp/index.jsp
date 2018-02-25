@@ -13,10 +13,10 @@
         <main class="row" >
         <nav class="col-md-3">
         <h2>Opciones</h2>
-        <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="clientes" >Gestión clientes</a></li>
-            <li class="disabled"><a href="clientes" >Gestión instalaciones</a></li>
-            <li class="disabled"><a href="clientes" >Gestión servicios</a></li>
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item"><a class="nav-link active" href="clientes" >Gestión clientes</a></li>
+            <li class="nav-item"><a class="nav-link disabled"href="#" >Gestión instalaciones</a></li>
+            <li class="nav-item"><a class="nav-link disabled"href="#" >Gestión servicios</a></li>
         </ul>
         </nav>
         <section class="col-md-9">

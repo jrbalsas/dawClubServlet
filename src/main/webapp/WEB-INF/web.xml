@@ -13,7 +13,8 @@
             <web-resource-name>cliente</web-resource-name>
             <url-pattern>/clientes/*</url-pattern>
         </web-resource-collection>
-<!--  Remove comments to enable authentication&authorization
+<!--  Remove comments to enable authentication&authorizatio -->        
+<!--
         <auth-constraint>
             <role-name>USUARIOS</role-name>
             <role-name>ADMINISTRADORES</role-name>
@@ -25,7 +26,7 @@
         <realm-name>file</realm-name>
         <form-login-config>
             <form-login-page>/WEB-INF/login.jsp</form-login-page>
-            <form-error-page>/WEB-INF/login.jsp</form-error-page>
+            <form-error-page>/WEB-INF/login.jsp?error</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>

@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<header class="page-header container">
-    <h1>
+<header class="container well">
+    <h1 class="">
         <a href="<c:url value='/'/>"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
            Club de Tenis
     </h1>

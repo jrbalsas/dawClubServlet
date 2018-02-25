@@ -24,9 +24,16 @@
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
-            <version>10.13.1.1</version>
+            <version>10.14.1.0</version>
             <scope>runtime</scope>
         </dependency>
+        <!-- Resolving CSS/JS Dependencies with http://www.webjars.org -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -37,21 +44,21 @@
 
     <build>
         <plugins>
-       <plugin>                                                                                               
-          <groupId>org.apache.tomcat.maven</groupId>                                                          
-          <artifactId>tomcat7-maven-plugin</artifactId>                                                       
-          <version>2.2</version>                                                                              
-        </plugin>    
-		  <plugin>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-maven-plugin</artifactId>
-			<version>9.3.12.v20160915</version>
-			<configuration>
-				<webApp>
-					<contextPath>/daw</contextPath>
-				</webApp>
-			</configuration>
-		  </plugin>
+            <plugin>                                                                                               
+                <groupId>org.apache.tomcat.maven</groupId>                                                          
+                <artifactId>tomcat7-maven-plugin</artifactId>                                                       
+                <version>2.2</version>                                                                              
+            </plugin>    
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.3.12.v20160915</version>
+                <configuration>
+                    <webApp>
+                        <contextPath>/daw</contextPath>
+                    </webApp>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

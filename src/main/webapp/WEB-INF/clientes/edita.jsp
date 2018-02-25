@@ -11,37 +11,38 @@
     <body class="container">
         <%@include file="/WEB-INF/layout/header.jspf" %>
         <main class="row">
-        <nav class="col-md-3">
-            <h2>Opciones</h2>
-            <ul class=" nav nav-pills nav-stacked">
-                <li><%@include file="/WEB-INF/layout/logoutBt.jspf" %></li>
-                <li ><a href="listado" class="active">Volver</a></li>
-            </ul>
-        </nav>
+            <nav class="col-md-3">
+                <h2>Opciones</h2>
+                <ul class=" nav nav-pills flex-column">
+                    <li class="nav-item"><%@include file="/WEB-INF/layout/logoutBt.jspf" %></li>
+                    <li class="nav-item"><a class="nav-link active" href="listado" >Volver</a></li>
+                </ul>
+            </nav>
+            <section class="col-md-6">
+                <h2>Editar Cliente</h2>
+                <form method="POST" class="well">
+                    <h3>Cliente nº: ${cliente.id}</h3>
+                    <input name="id" type="hidden" value="${cliente.id}">
+                    <label>Nombre:</label> <input name="nombre" value="${cliente.nombre}" class="form-control">
+                    <div><span class='form-text text-danger'>${errNombre}</span></div>
+                    <label>DNI:</label><input name="dni" value="${cliente.dni}" class="form-control">
+                    <div><span class='form-text text-danger'>${errDni}</span></div>
+                    <label>Socio:</label><input name="socio" type="checkbox" value="1" ${cliente.socio?"checked":""} class="form-control">
+                    <label>Medio Pago:</label>
+                    <select name="medioPago" class="form-control">
+                        <c:forEach var="medio" items="${mediosPago}" varStatus="elemento">
+                            <option value="${elemento.index}"  ${elemento.index==cliente.medioPago?'selected':''} >
+                                ${medio}
+                            </option>
+                        </c:forEach>    
+                    </select>
 
-        <h2>Editar Cliente</h2>
-        <form method="POST" class="well  col-md-6">
-        <h3>Cliente nº: ${cliente.id}</h3>
-        <input name="id" type="hidden" value="${cliente.id}">
-        <label>Nombre:</label> <input name="nombre" value="${cliente.nombre}" class="form-control">
-        <div><span class='form-text text-danger'>${errNombre}</span></div>
-        <label>DNI:</label><input name="dni" value="${cliente.dni}" class="form-control">
-        <div><span class='form-text text-danger'>${errDni}</span></div>
-        <label>Socio:</label><input name="socio" type="checkbox" value="1" ${cliente.socio?"checked":""} class="form-control">
-        <label>Medio Pago:</label>
-            <select name="medioPago" class="form-control">
-                <c:forEach var="medio" items="${mediosPago}" varStatus="elemento">
-                    <option value="${elemento.index}"  ${elemento.index==cliente.medioPago?'selected':''} >
-                        ${medio}
-                    </option>
-                </c:forEach>    
-            </select>
-        
-        <p>
-            <input name="enviar" type="submit" value="Guardar" class="btn btn-primary">
-            <input name="enviar" type="reset" value="Restaurar" class="btn btn-default">
-        </p>
-        </form>
+                    <p>
+                        <input name="enviar" type="submit" value="Guardar" class="btn btn-primary">
+                        <input name="enviar" type="reset" value="Restaurar" class="btn btn-light">
+                    </p>
+                </form>
+            </section>
         </main>
         <%@include file="/WEB-INF/layout/footer.jspf"%>
     </body>

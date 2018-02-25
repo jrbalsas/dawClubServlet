@@ -13,10 +13,10 @@
         <main class="row">
             <nav class="col-md-3">
                 <h2>Opciones</h2>
-                <ul class="nav nav-pills nav-stacked">
-                <li><%@include file="/WEB-INF/layout/logoutBt.jspf" %></li>
-                    <li class="active"><a href='<c:url value="/clientes/edita?id=${cliente.id}"/>'>Edita</a></li>
-                    <li> <a href='<c:url value="/clientes/"/>'>Volver</a></li>
+                <ul class="nav flex-column nav-pills ">
+                    <li class="nav-item"><%@include file="/WEB-INF/layout/logoutBt.jspf" %></li>
+                    <li class="nav-item"><a class="nav-link active" href='<c:url value="/clientes/edita?id=${cliente.id}"/>'>Edita</a></li>
+                    <li class="nav-item"> <a class="nav-link" href='<c:url value="/clientes/"/>'>Volver</a></li>
                 </ul>
             </nav>        
         <section class="col-md-9">
