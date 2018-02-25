@@ -13,7 +13,9 @@ Features:
 - Boostrap styles
 - Optional access constraints for Authentication/Authorization.
 - Sevlet Logout controller and optional logout button for views
+- Uses webjars to resolve bootsrap 4.0 css/js dependencies
 - Runs from command line using Jetty
+
 
 Installation instructions
 ----------------
