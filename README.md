@@ -14,7 +14,7 @@ Features:
 - Optional access constraints for Authentication/Authorization.
 - Sevlet Logout controller and optional logout button for views
 - Uses webjars to resolve bootsrap 4.0 css/js dependencies
-- Runs from command line using Jetty
+- Runs from command line using an embedded Tomcat server
 
 
 Installation instructions
@@ -29,3 +29,10 @@ Run project in Netbeans using Tomcat Server or just enter 'mvn jetty:run' in com
 * Create a Derby Database from Netbeans Services tab and launch WEB-INF DBInitScript.sql in order to generate test DB schema and sample data
 * Adapt META-INF/context.xml DB Connection Pool with database custom data if deployed in Tomcat
 * Adapt glassfish-resources.xml DB Connection Pool with database custom data if deployed in Glassfish
+
+Run from commandline
+-----------
+```
+$ mvn clean install
+$ mvn tomcat7:run
+```

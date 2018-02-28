@@ -48,6 +48,9 @@
                 <groupId>org.apache.tomcat.maven</groupId>                                                          
                 <artifactId>tomcat7-maven-plugin</artifactId>                                                       
                 <version>2.2</version>                                                                              
+                <configuration>
+                    <port>9090</port>
+                </configuration>
             </plugin>    
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
