@@ -7,21 +7,21 @@
     </session-config>
 
 <!-- Realm Access Rules -->
+<!--  Remove comments to enable authentication&authorizatio -->        
+<!--
     <security-constraint>
         <display-name>CLIENTE</display-name>
         <web-resource-collection>
             <web-resource-name>cliente</web-resource-name>
             <url-pattern>/clientes/*</url-pattern>
         </web-resource-collection>
-<!--  Remove comments to enable authentication&authorizatio -->        
-<!--
         <auth-constraint>
             <role-name>USUARIOS</role-name>
             <role-name>ADMINISTRADORES</role-name>
         </auth-constraint>
--->
   </security-constraint>
-    <login-config>
+-->
+  <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>file</realm-name>
         <form-login-config>
@@ -46,7 +46,7 @@
       <res-auth>Container</res-auth>
   </resource-ref>
 -->  
-  <!-- Disable custom error page
+<!-- Disable custom error page
     <error-page>
         <location>/error.jsp</location>
     </error-page>

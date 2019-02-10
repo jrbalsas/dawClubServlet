@@ -1,14 +1,18 @@
 package com.daw.club.model.dao;
 
 import com.daw.club.model.Cliente;
+import com.daw.club.model.dao.qualifiers.DAOList;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
 
 /*Sample DAO implementation using an ArrayList of Objects in memory*/
+@DAOList
+@ApplicationScoped
 public class ClienteDAOList implements ClienteDAO{
 
-    private static ArrayList<Cliente> clientes=null;
-    private static int idCliente = 1;
+    private ArrayList<Cliente> clientes=null;
+    private int idCliente = 1;
 
     public ClienteDAOList() {
         if (clientes == null) {

@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="ctrl_url" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,7 +22,7 @@
                 </ul>
             </nav>
             <section class="col-md-10">
-                <h2>Listado de Clientes (JSTL)</h2>
+                <h2>Listado de Clientes</h2>
                 <c:if test="${empty clientes}">
                     NO HAY CLIENTES DISPONIBLES
                 </c:if>

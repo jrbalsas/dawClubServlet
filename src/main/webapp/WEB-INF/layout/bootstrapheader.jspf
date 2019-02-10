@@ -2,10 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="bootstrapbase" value="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0"/>   
-<%--! webjar CSS/JS boostrap 4.0 dependencies --%>
-<c:url var="bootstrapbase" value="/webjars/bootstrap/4.0.0"/>   
+
+<%--! webjar CSS/JS boostrap 4.2 dependencies --%>
+<c:url var="bootstrapbase" value="/webjars/bootstrap/4.2.1"/>   
 <c:url var="jquerybase" value="/webjars/jquery/3.0.0"/>   
-<c:url var="popperbase" value="/webjars/popper.js/1.11.1/dist/umd"/>   
+<c:url var="popperbase" value="/webjars/popper.js/1.41.3/dist/umd"/>   
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">

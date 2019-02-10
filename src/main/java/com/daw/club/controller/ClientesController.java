@@ -6,29 +6,43 @@ import com.daw.club.Util;
 import com.daw.club.model.dao.ClienteDAO;
 import com.daw.club.model.dao.ClienteDAOList;
 import com.daw.club.model.dao.ClienteDAOJDBC;
+import com.daw.club.model.dao.qualifiers.DAOJdbc;
+import com.daw.club.model.dao.qualifiers.DAOList;
+
 
 
 import java.io.IOException;
+import javax.inject.Inject;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/clientes/*")
+//@ServletSecurity( @HttpConstraint (rolesAllowed = {"USUARIOS","ADMINISTRADORES"}))
 public class ClientesController extends HttpServlet {
     
+    // Model objects
+    //@Inject @DAOJdbc      //Select JDBC DAO implementation
+    @Inject @DAOList
+    private ClienteDAO clienteDAO;
+    @Inject
+    private MedioPagoDAO mediosPago;
+
     /**View files path*/
     private final String srvViewPath="/WEB-INF/clientes";
-    private ClienteDAO clienteDAO;
-    private MedioPagoDAO mediosPago;
     private String srvUrl;
     private String imgUrl;
+    
     private static final Logger Log= Logger.getLogger(ClientesController.class.getName());
 
     
@@ -41,13 +55,7 @@ public class ClientesController extends HttpServlet {
         
         //Servlet and image dir URLs for views' use
         srvUrl=servletConfig.getServletContext().getContextPath()+"/clientes";
-        imgUrl=servletConfig.getServletContext().getContextPath()+"/images";
-        
-        //Select DAO Implementation
-        //clienteDAO=new ClienteDAOJDBC();
-        clienteDAO=new ClienteDAOList();
-        
-        mediosPago=new MedioPagoDAO();
+        imgUrl=servletConfig.getServletContext().getContextPath()+"/images";        
 
     }
     

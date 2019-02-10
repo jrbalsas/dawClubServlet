@@ -2,8 +2,11 @@ package com.daw.club.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 
 /*Sample DAO implementation using an ArrayList of Objects in memory*/
+@ApplicationScoped
 public class MedioPagoDAO {
 
     private final  ArrayList<String> medios;

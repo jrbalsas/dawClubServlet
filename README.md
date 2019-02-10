@@ -1,38 +1,30 @@
 dawClub using Servlet/JSP
 ==========
 
-Sample Maven project with classic CRUD Web App using Servlet,JSP and JSTL
+Sample Maven project with classic CRUD Web App using Servlet,JSP, JSTL and CDI
 
 Features:
 -------------
-- Simple DAO with Lists for testing purpose
+- Uses CDI for DAO objects instantiation and inject dependencies in Servlet
+- Simple DAO with Lists for testing purpose (applicationScoped)
 - Sample DAO JDBC implementation
+- Sample Glassfish DB Connection Pool configuration file (glassfish-resources.xml)
 - Sample Tomcat DB Connection Pool configuration in context.xml
 - Sample Tomcat file Realm  configuration in context.xml
-- Sample Glassfish DB Connection Pool configuration file
-- Boostrap styles
+- Bootstrap styles
 - Optional access constraints for Authentication/Authorization.
-- Sevlet Logout controller and optional logout button for views
-- Uses webjars to resolve bootsrap 4.0 css/js dependencies
-- Runs from command line using an embedded Tomcat server
-
+- Servlet Logout controller and optional logout button for views
+- Uses webjars to resolve bootsrap 4.2 css/js dependencies
 
 Installation instructions
 ----------------
-- In Tomcat, for enabling Authentication form, uncomment <Auth-constraint> section in web.xml and add users on tomcat-users.xml
+- Run on any JEE 8 compatible application server like Payara or Glassfish
+- To launch in Tomcat, add JSTL and CDI dependencies in pom.xml
 
-### In-Memory DAO
-Run project in Netbeans using Tomcat Server or just enter 'mvn jetty:run' in command line from project folder
-
-### JDBC DAO
-* Change the ClientesController.java init method to create an instance of the ClienteDAOJDBC class
+### Using JDBC DAO implementation
+* Change the ClientesController.java DAO injection qualifier from @DAOList to @DAOJdbc
 * Create a Derby Database from Netbeans Services tab and launch WEB-INF DBInitScript.sql in order to generate test DB schema and sample data
-* Adapt META-INF/context.xml DB Connection Pool with database custom data if deployed in Tomcat
-* Adapt glassfish-resources.xml DB Connection Pool with database custom data if deployed in Glassfish
+##### Create DataSource in Server
+* Glassfish/Payara: Adapt glassfish-resources.xml DB Connection Pool with database custom data
+* Tomcat: Adapt META-INF/context.xml DB Connection Pool with database custom data
 
-Run from commandline
------------
-```
-$ mvn clean install
-$ mvn tomcat7:run
-```
