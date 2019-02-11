@@ -32,8 +32,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ClientesController extends HttpServlet {
     
     // Model objects
-    //@Inject @DAOJdbc      //Select JDBC DAO implementation
-    @Inject @DAOList
+    @Inject @DAOJdbc      //Select JDBC DAO implementation
+    //@Inject @DAOList
     private ClienteDAO clienteDAO;
     @Inject
     private MedioPagoDAO mediosPago;
@@ -43,7 +43,7 @@ public class ClientesController extends HttpServlet {
     private String srvUrl;
     private String imgUrl;
     
-    private static final Logger Log= Logger.getLogger(ClientesController.class.getName());
+    private final Logger logger= Logger.getLogger(ClientesController.class.getName());
 
     
     @Override
@@ -51,7 +51,7 @@ public class ClientesController extends HttpServlet {
         
         super.init(servletConfig);
         
-        Log.info("Inicializando ClientesController");
+        logger.info("Inicializando ClientesController");
         
         //Servlet and image dir URLs for views' use
         srvUrl=servletConfig.getServletContext().getContextPath()+"/clientes";
@@ -94,7 +94,7 @@ public class ClientesController extends HttpServlet {
         //Detect current servlet action
         String action=(request.getPathInfo()!=null?request.getPathInfo():"");
         
-        Log.log(Level.INFO, "Petición GET {0}", action);
+        logger.log(Level.INFO, "Petición GET {0}", action);
                 
         switch (action) {
             case "/visualiza": {    //VISUALIZA UN CLIENTE
@@ -155,7 +155,7 @@ public class ClientesController extends HttpServlet {
         //Detect current servlet action
         String action=(request.getPathInfo()!=null?request.getPathInfo():"");
 
-        Log.log(Level.INFO, "Petición POST {0}", action);        
+        logger.log(Level.INFO, "Petición POST {0}", action);        
 
         switch (action) {
             case "/crea": {     //ALTA DE UN CLIENTE
@@ -212,12 +212,12 @@ public class ClientesController extends HttpServlet {
         //Validamos Datos
         if (nombre.length()<3 || nombre.length()>50) {
             request.setAttribute("errNombre", "Nombre no válido");
-            Log.log(Level.INFO, "Enviado Nombre de usuario no válido");        
+            logger.log(Level.INFO, "Enviado Nombre de usuario no válido");        
             valido=false;
         }
         if (!dni.matches("^\\d{7,8}-?[a-zA-Z]{1}$")) {
             request.setAttribute("errDni", "DNI no válido (12345678A)");
-            Log.log(Level.INFO, "Enviado DNI incorrecto");        
+            logger.log(Level.INFO, "Enviado DNI incorrecto");        
             valido=false;
         }
         return valido;

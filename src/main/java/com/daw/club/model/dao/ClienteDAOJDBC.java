@@ -32,6 +32,8 @@ public class ClienteDAOJDBC implements ClienteDAO {
     private static final String SQL_ACTUALIZA="UPDATE Clientes set NOMBRE=?, DNI=?, SOCIO=?, MEDIOPAGO=? WHERE id=?";
     private static final String SQL_BORRA="DELETE FROM Clientes WHERE id=?";
 
+    private final Logger logger = Logger.getLogger(ClienteDAOJDBC.class.getName());
+    
     @Resource(name = "java:app/jdbc/gestClub")
     private DataSource ds=null;
     
@@ -65,11 +67,11 @@ public class ClienteDAOJDBC implements ClienteDAO {
              PreparedStatement stmn=conn.prepareStatement(SQL_BUSCAID)) {
             stmn.setInt(1,id);
             try( ResultSet rs=stmn.executeQuery()) {
-                rs.next();
-                c=clienteMapper(rs);                
+                if (rs.next())
+                    c=clienteMapper(rs);                
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
         return c;
     }
@@ -85,7 +87,7 @@ public class ClienteDAOJDBC implements ClienteDAO {
                 l.add(clienteMapper(rs));
             }                
         } catch (Exception ex) {
-            Logger.getLogger(ClienteDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
         return l;
     }
@@ -108,10 +110,10 @@ public class ClienteDAOJDBC implements ClienteDAO {
                     c.setId(nuevoId);
                 }
             } catch (Exception ex) {
-                Logger.getLogger(ClienteDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+                logger.log(Level.SEVERE, ex.getMessage(), ex);
             }
         } catch (Exception ex) {
-            Logger.getLogger(ClienteDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
         return result;
     }
@@ -129,7 +131,7 @@ public class ClienteDAOJDBC implements ClienteDAO {
             stmn.setInt(5,c.getId());
             result=(stmn.executeUpdate()==1);
         } catch (Exception ex) {
-            Logger.getLogger(ClienteDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
         return result;
     }
@@ -142,7 +144,7 @@ public class ClienteDAOJDBC implements ClienteDAO {
             stmn.setInt(1,id);
             result=(stmn.executeUpdate()==1);
         } catch (Exception ex) {
-            Logger.getLogger(ClienteDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }         
         return result;
     }

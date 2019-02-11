@@ -22,7 +22,7 @@
         </nav>
         <section class="col-md-9">
         <h2>Identificación de usuario</h2>
-        <c:if test="${not empty pageContext.request.queryString}">
+        <c:if test="${param.error}">
             <p class="alert alert-danger">Credenciales incorrectas</p>
         </c:if>
         <form action="j_security_check" method="POST">
