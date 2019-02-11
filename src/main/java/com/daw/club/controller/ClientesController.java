@@ -32,8 +32,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ClientesController extends HttpServlet {
     
     // Model objects
-    @Inject @DAOJdbc      //Select JDBC DAO implementation
-    //@Inject @DAOList
+    //@Inject @DAOJdbc      //Select JDBC DAO implementation
+    @Inject @DAOList
     private ClienteDAO clienteDAO;
     @Inject
     private MedioPagoDAO mediosPago;
