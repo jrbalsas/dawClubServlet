@@ -7,7 +7,8 @@ Features:
 -------------
 - Uses CDI for DAO objects instantiation and inject dependencies in Servlet
 - Simple DAO with Lists for testing purpose (applicationScoped)
-- Sample DAO JDBC implementation
+- DAO JDBC implementation
+- Application Server Datasource initialization in web.xml
 - Sample Glassfish DB Connection Pool configuration file (glassfish-resources.xml)
 - Sample Tomcat DB Connection Pool configuration in context.xml
 - Sample Tomcat file Realm  configuration in context.xml
@@ -25,6 +26,7 @@ Installation instructions
 * Change the ClientesController.java DAO injection qualifier from @DAOList to @DAOJdbc
 * Create a Derby Database from Netbeans Services tab and launch WEB-INF DBInitScript.sql in order to generate test DB schema and sample data
 ##### Create DataSource in Server
-* Glassfish/Payara: Adapt glassfish-resources.xml DB Connection Pool with database custom data
-* Tomcat: Adapt META-INF/context.xml DB Connection Pool with database custom data
+* By default, DataSource is created and configurated in Application Server from web.xml configuration
+* (Optional) Glassfish/Payara: Adapt glassfish-resources.xml DB Connection Pool with database custom data
+* (Optional) Tomcat: Adapt META-INF/context.xml DB Connection Pool with database custom data
 

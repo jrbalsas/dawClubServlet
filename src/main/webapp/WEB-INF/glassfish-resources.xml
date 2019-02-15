@@ -4,14 +4,14 @@
   <!--Glassfish DB Datasource connected to a db connection Pool-->
   <!-- Generated with netbeans JDBC resource wizard  -->
   <!-- NOTE: for Tomcat Datasource see META-INF/context.xml -->
-
+<!--
     <jdbc-resource enabled="true" jndi-name="jdbc/gestClub" 
                  object-type="user" pool-name="gestClubPool">
         <description/>
     </jdbc-resource>
-  
+-->
     <!-- Glassfish DB connection Pool -->
-
+<!--
   <jdbc-connection-pool  name="gestClubPool"         
             res-type="javax.sql.DataSource"
             max-connection-usage-count="0"
@@ -49,4 +49,5 @@
     <property name="User" value="dawuser1"/>
     <property name="Password" value="dawuser1"/>
   </jdbc-connection-pool>
+-->
 </resources>
