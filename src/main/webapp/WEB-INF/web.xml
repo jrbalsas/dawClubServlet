@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <!-- Session configuration -->
     <session-config>
         <session-timeout>
-            30
-        </session-timeout>
+            30 <!-- Time in minutes to expire after the last request -->
+        </session-timeout>        
+        <cookie-config>
+                <http-only>true</http-only> <!-- Prevent client side scripting from accessing/manipulating session cookie. -->
+                <secure>false</secure> <!-- true to force send over TLS connection -->
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode> <!-- This disables URL rewriting. -->
     </session-config>
 
     <!-- Creation of Datasource in Application Server -->
 
     <data-source>
         <name>java:app/jdbc/gestClub</name>
-        <class-name>org.apache.derby.jdbc.ClientDataSource</class-name>                
+        <class-name>org.apache.derby.jdbc.ClientConnectionPoolDataSource</class-name>        
+        <server-name>localhost</server-name>
+        <port-number>1527</port-number>
         <database-name>club</database-name>
         <user>dawuser1</user>
         <password>dawuser1</password>                                
