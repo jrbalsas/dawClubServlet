@@ -16,7 +16,7 @@
     <!-- Creation of Datasource in Application Server -->
 
     <data-source>
-        <name>java:app/jdbc/gestClub</name>
+        <name>java:global/jdbc/gestClub</name>
         <class-name>org.apache.derby.jdbc.ClientConnectionPoolDataSource</class-name>        
         <server-name>localhost</server-name>
         <port-number>1527</port-number>

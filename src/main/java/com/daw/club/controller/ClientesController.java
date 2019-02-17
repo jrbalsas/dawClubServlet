@@ -225,12 +225,13 @@ public class ClientesController extends HttpServlet {
 
         // Validamos Datos
 
-        // Bean Validation        
+        // Bean Validation (Ver restricciones en clase Cliente)
         Set<ConstraintViolation<Cliente>> errores = validator.validate(c);
 
         if (errores.size() > 0) {
             valido = false;
             for (ConstraintViolation<Cliente> error : errores) {
+                //Enviar mensajes de error a la vista
                 request.setAttribute("err" + error.getPropertyPath(), error.getMessage());
             }
         }
