@@ -30,12 +30,6 @@
             <scope>runtime</scope>
         </dependency>
 -->
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>10.14.2.0</version>
-            <scope>runtime</scope>
-        </dependency>
         <!-- Resolving CSS/JS Dependencies with http://www.webjars.org -->
         <dependency>
             <groupId>org.webjars</groupId>
