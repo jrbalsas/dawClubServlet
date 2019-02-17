@@ -14,7 +14,7 @@
     </session-config>
 
     <!-- Creation of Datasource in Application Server -->
-
+<!--
     <data-source>
         <name>java:global/jdbc/gestClub</name>
         <class-name>org.apache.derby.jdbc.ClientConnectionPoolDataSource</class-name>        
@@ -27,7 +27,7 @@
         <max-pool-size>10</max-pool-size>
         <min-pool-size>5</min-pool-size>
     </data-source>
-
+-->
 
     <!-- Realm Access Rules -->
     <!--  Remove comments to enable authentication&authorizatio -->        
