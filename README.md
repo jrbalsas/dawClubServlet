@@ -1,10 +1,11 @@
 dawClub using Servlet/JSP
 ==========
 
-Sample Maven project with classic CRUD Web App using Servlet,JSP, JSTL and CDI
+Sample Maven project with MVC CRUD Web Application using Servlet, JSP/JSTL, CDI and Bean Validation
 
 Features:
 -------------
+- Bean validation
 - Uses CDI for DAO objects instantiation and inject dependencies in Servlet
 - Simple DAO with Lists for testing purpose (applicationScoped)
 - DAO JDBC implementation
