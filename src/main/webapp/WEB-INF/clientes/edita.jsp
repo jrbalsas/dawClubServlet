@@ -24,9 +24,9 @@
                     <h3>Cliente nº: ${cliente.id}</h3>
                     <input name="id" type="hidden" value="${cliente.id}">
                     <label>Nombre:</label> <input name="nombre" value="${cliente.nombre}" class="form-control">
-                    <div><span class='form-text text-danger'>${errNombre}</span></div>
+                    <div><span class='form-text text-danger'>${errnombre}</span></div>
                     <label>DNI:</label><input name="dni" value="${cliente.dni}" class="form-control">
-                    <div><span class='form-text text-danger'>${errDni}</span></div>
+                    <div><span class='form-text text-danger'>${errdni}</span></div>
                     <label>Socio:</label><input name="socio" type="checkbox" value="1" ${cliente.socio?"checked":""} class="form-control">
                     <label>Medio Pago:</label>
                     <select name="medioPago" class="form-control">

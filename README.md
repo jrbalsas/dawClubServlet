@@ -26,8 +26,7 @@ Installation instructions
 ### Using JDBC DAO implementation
 * Change the ClientesController.java DAO injection qualifier from @DAOList to @DAOJdbc
 * Create a Derby Database from Netbeans Services tab and launch WEB-INF DBInitScript.sql in order to generate test DB schema and sample data
-##### Create DataSource in Server
+### Create DataSource in Server
 * By default, DataSource is created and configurated in Application Server from web.xml configuration
 * (Optional) Glassfish/Payara: Adapt glassfish-resources.xml DB Connection Pool with database custom data
 * (Optional) Tomcat: Adapt META-INF/context.xml DB Connection Pool with database custom data
-
