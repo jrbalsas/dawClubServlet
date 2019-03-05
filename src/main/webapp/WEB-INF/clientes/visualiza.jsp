@@ -29,7 +29,7 @@
                 <li class="list-group-item"><strong>Nombre:</strong> ${fn:escapeXml(cliente.nombre)}</li>
                 <li class="list-group-item"><strong>DNI:</strong>${cliente.dni}</li>
                 <li class="list-group-item"><strong>Socio:</strong> ${cliente.socio?"Sí":"No"}</li>
-                <li class="list-group-item"><strong>Medio Pago:</strong> ${mediosPago[cliente.medioPago]}</li>        
+                <li class="list-group-item"><strong>Medio Pago:</strong> ${medioPago.medios[cliente.medioPago]}</li>        
             </ul>
             </div>
         </section>

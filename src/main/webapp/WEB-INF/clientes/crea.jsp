@@ -28,7 +28,7 @@
                     <label >Socio:</label><input name="socio" type="checkbox" value="1" ${cliente.socio?"checked":""} class='form-control'>
                     <label>Medio Pago:</label>
                     <select name="medioPago" class='form-control' >
-                        <c:forEach var="medio" items="${mediosPago}" varStatus="elemento">
+                        <c:forEach var="medio" items="${medioPago.medios}" varStatus="elemento">
                             <option value="${elemento.index}"  ${elemento.index==cliente.medioPago?'selected':''} >
                                 ${medio}
                             </option>

@@ -6,6 +6,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
 /*Sample DAO implementation using an ArrayList of Objects in memory*/
+@Named(value = "medioPago") //Access from view
 @ApplicationScoped
 public class MedioPagoDAO {
 
@@ -23,7 +24,7 @@ public class MedioPagoDAO {
         return medios.get(id);
     }
 
-    public List<String> buscaTodos() {
+    public List<String> getMedios() {
         return medios;
     }
 

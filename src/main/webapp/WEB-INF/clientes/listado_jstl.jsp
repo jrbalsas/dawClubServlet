@@ -36,7 +36,7 @@
                                 <td>${c.id}</td>
                                 <td>${fn:escapeXml(c.nombre)}</td><td>${c.dni}</td>
                                 <td>${c.socio?"Sí":"No"}</td>
-                                <td>${mediosPago[c.medioPago]}</td>
+                                <td>${medioPago.medios[c.medioPago]}</td>
                                 <td><a class='btn btn-light' href='${srvUrl}/visualiza${qry}'>Ver</a>&nbsp;
                                     <a class='btn btn-light' href='${srvUrl}/edita${qry}'>Editar</a>&nbsp;
                                     <a class='btn btn-light' href='${srvUrl}/borra${qry}'>Borrar</a>&nbsp;

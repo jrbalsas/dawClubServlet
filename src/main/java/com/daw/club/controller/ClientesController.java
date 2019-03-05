@@ -5,19 +5,13 @@ import com.daw.club.model.Cliente;
 import com.daw.club.Util;
 import com.daw.club.model.dao.ClienteDAO;
 import com.daw.club.model.dao.qualifiers.DAOJdbc;
-import com.daw.club.model.dao.qualifiers.DAOList;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.SQLException;
 import javax.inject.Inject;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -25,7 +19,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
@@ -34,8 +27,8 @@ import javax.validation.Validator;
 public class ClientesController extends HttpServlet {
 
     // Model objects
-    //@Inject @DAOJdbc      //Select JDBC DAO implementation
-    @Inject @DAOList
+    @Inject @DAOJdbc      //Select JDBC DAO implementation
+    //@Inject @DAOList
     private ClienteDAO clienteDAO;
     @Inject
     private MedioPagoDAO mediosPago;
@@ -79,8 +72,6 @@ public class ClientesController extends HttpServlet {
 
         request.setAttribute("imgUrl", imgUrl);
         request.setAttribute("srvUrl", srvUrl);
-
-        request.setAttribute("mediosPago", mediosPago.buscaTodos().toArray());
 
     }
 
