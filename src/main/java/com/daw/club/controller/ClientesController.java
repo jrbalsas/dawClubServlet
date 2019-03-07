@@ -5,6 +5,7 @@ import com.daw.club.model.Cliente;
 import com.daw.club.Util;
 import com.daw.club.model.dao.ClienteDAO;
 import com.daw.club.model.dao.qualifiers.DAOJdbc;
+import com.daw.club.model.dao.qualifiers.DAOList;
 
 import java.io.IOException;
 import javax.inject.Inject;
@@ -27,8 +28,8 @@ import javax.validation.Validator;
 public class ClientesController extends HttpServlet {
 
     // Model objects
-    @Inject @DAOJdbc      //Select JDBC DAO implementation
-    //@Inject @DAOList
+    //@Inject @DAOJdbc      //Select JDBC DAO implementation
+    @Inject @DAOList
     private ClienteDAO clienteDAO;
     @Inject
     private MedioPagoDAO mediosPago;
