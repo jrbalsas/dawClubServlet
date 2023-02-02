@@ -4,7 +4,7 @@ import com.daw.club.model.Cliente;
 import com.daw.club.model.dao.qualifiers.DAOList;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 /*Sample DAO implementation using an ArrayList of Objects in memory*/
 @DAOList
@@ -15,13 +15,11 @@ public class ClienteDAOList implements ClienteDAO{
     private int idCliente = 1;
 
     public ClienteDAOList() {
-        if (clientes == null) {
             clientes = new ArrayList<>();
 
             clientes.add(new Cliente(idCliente++, "Paco López", "11111111A", false,0));
             clientes.add(new Cliente(idCliente++, "María Jiménez", "22222222B", true,1));
             clientes.add(new Cliente(idCliente++, "Carlos García", "33333333C", true,2));
-        }
     }
     
     @Override

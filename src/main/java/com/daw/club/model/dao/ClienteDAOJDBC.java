@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.enterprise.context.RequestScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.enterprise.context.RequestScoped;
 import javax.sql.DataSource;
 
 @DAOJdbc
@@ -40,7 +40,7 @@ public class ClienteDAOJDBC implements ClienteDAO {
     @PostConstruct
     public void dbinfo() {
         try (
-            Connection conn = ds.getConnection();) {
+            Connection conn = ds.getConnection()) {
             DatabaseMetaData dm = conn.getMetaData();
             logger.info(String.format("Conexión con BD %s %s",
                     dm.getDatabaseProductName(),
@@ -83,7 +83,7 @@ public class ClienteDAOJDBC implements ClienteDAO {
         List<Cliente> l=new ArrayList<>();
         try (Connection conn=ds.getConnection();
             Statement stmn=conn.createStatement();
-            ResultSet rs=stmn.executeQuery(SQL_BUSCATODOS);
+            ResultSet rs=stmn.executeQuery(SQL_BUSCATODOS)
         ){
             while (rs.next()) {
                 l.add(clienteMapper(rs));
@@ -98,7 +98,7 @@ public class ClienteDAOJDBC implements ClienteDAO {
     public boolean crea(Cliente c) {
         boolean result=false;
         try (Connection conn=ds.getConnection();
-            PreparedStatement stmn=conn.prepareStatement(SQL_CREA,autoField);
+            PreparedStatement stmn=conn.prepareStatement(SQL_CREA,autoField)
         ){
             stmn.setString(1,c.getNombre());
             stmn.setString(2,c.getDni());
@@ -124,7 +124,7 @@ public class ClienteDAOJDBC implements ClienteDAO {
     public boolean guarda(Cliente c) {
         boolean result=false;
         try (Connection conn=ds.getConnection();
-            PreparedStatement stmn=conn.prepareStatement(SQL_ACTUALIZA);
+            PreparedStatement stmn=conn.prepareStatement(SQL_ACTUALIZA)
         ){
             stmn.setString(1,c.getNombre());
             stmn.setString(2,c.getDni());
@@ -141,7 +141,7 @@ public class ClienteDAOJDBC implements ClienteDAO {
     public boolean borra(Integer id) {
         boolean result=false;
         try (Connection conn=ds.getConnection();
-            PreparedStatement stmn=conn.prepareStatement(SQL_BORRA);
+            PreparedStatement stmn=conn.prepareStatement(SQL_BORRA)
         ){
             stmn.setInt(1,id);
             result=(stmn.executeUpdate()==1);
