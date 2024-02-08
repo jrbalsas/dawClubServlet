@@ -1,3 +1,4 @@
+<%@ taglib prefix="club" tagdir="/WEB-INF/tags/club" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setBundle basename="messages"/>
@@ -18,13 +19,14 @@
         <h2>Opciones</h2>
         <ul class="nav nav-pills flex-column">
             <li class="nav-item"><a class="nav-link active" href="clientes" >Gestión clientes</a></li>
-            <li class="nav-item"><a class="nav-link disabled"href="#" >Gestión instalaciones</a></li>
-            <li class="nav-item"><a class="nav-link disabled"href="#" >Gestión servicios</a></li>
+            <li class="nav-item"><a class="nav-link disabled" href="#" >Gestión instalaciones</a></li>
+            <li class="nav-item"><a class="nav-link disabled" href="#" >Gestión servicios</a></li>
         </ul>
         </nav>
         <section class="col-md-9">
         </section>
         </main>
-        <%@include file="/WEB-INF/layout/footer.jspf"%>
+
+        <club:pie-pagina message="Better Learn DAW"/>
     </body>
 </html>

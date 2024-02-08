@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="club" tagdir="/WEB-INF/tags/club" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,12 +11,12 @@
         <%@include file="/WEB-INF/layout/bootstrapheader.jspf"%>
     </head>
     <body class="container">
-       <%@include file="/WEB-INF/layout/header.jspf" %>
+       <club:cabecera-pagina/>
         <main class="row">
             <nav class="col-md-3">
                 <h2>Opciones</h2>
                 <ul class="nav flex-column nav-pills ">
-                    <li class="nav-item"><%@include file="/WEB-INF/layout/logoutBt.jspf" %></li>
+                    <li class="nav-item"><club:logout-button/></li>
                     <li class="nav-item"><a class="nav-link active" href='<c:url value="/clientes/edita?id=${cliente.id}"/>'>Edita</a></li>
                     <li class="nav-item"> <a class="nav-link" href='<c:url value="/clientes/"/>'>Volver</a></li>
                 </ul>
@@ -34,7 +35,7 @@
             </div>
         </section>
         </main>
-        <%@include file="/WEB-INF/layout/footer.jspf"%>
+       <club:pie-pagina/>
     </body>
 </html>
 
